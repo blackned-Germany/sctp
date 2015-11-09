@@ -1,5 +1,9 @@
+*.iml
+.idea/
 target
 /.classpath
 /.project
 /ManagementTest_sctp.xml
 /sctptest.log
+sctp-impl/*.log
+sctp-impl/*.xml

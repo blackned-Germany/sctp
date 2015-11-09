@@ -21,7 +21,8 @@
  */
 package org.mobicents.protocols.api;
 
-import org.mobicents.commons.HexTools;
+
+import org.apache.commons.codec.binary.Hex;
 
 /**
  * The actual pay load data received or to be sent from/to underlying socket
@@ -128,7 +129,7 @@ public class PayloadData {
 		StringBuffer sb = new StringBuffer();
 		sb.append("PayloadData [dataLength=").append(dataLength).append(", complete=").append(complete).append(", unordered=").append(unordered)
 				.append(", payloadProtocolId=").append(payloadProtocolId).append(", streamNumber=").append(streamNumber).append(", data=\n")
-				.append(HexTools.dump(data, 0)).append("]");
+				.append(Hex.encodeHex(data)).append("]");
 		return sb.toString();
 	}
 

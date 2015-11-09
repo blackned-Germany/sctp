@@ -9,15 +9,14 @@
 
 	<groupId>org.mobicents.protocols.sctp</groupId>
 	<artifactId>sctp-parent</artifactId>
-	<version>1.6.0.FINAL</version>
+	<version>1.6.0</version>
 	<name>Mobicents :: SCTP :: Parent :: ${pom.artifactId}</name>
 	<packaging>pom</packaging>
 
 
 	<properties>
-		<log4j.version>1.2.8</log4j.version>
+		<log4j.version>1.2.17</log4j.version>
 		<javolution.version>5.5.1</javolution.version>
-		<commons.version>1.0.0.CR1</commons.version>
 		<testng.version>6.2</testng.version>
 		<compiler.plugin.version>2.0.2</compiler.plugin.version>
 		<compile.source>1.7</compile.source>
@@ -29,11 +28,6 @@
 	</modules>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.mobicents.commons</groupId>
-				<artifactId>commons</artifactId>
-				<version>${commons.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
@@ -88,19 +82,6 @@
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>install</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 						<version>2.1.2</version>
 						<executions>
@@ -151,28 +132,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<groupId>org.mobicents.tools</groupId>
-				<version>
-					${mobicents.tools.mavenplugin.eclipse.version}
-				</version>
-				<inherited>false</inherited>
-				<executions />
-				<configuration>
-					<classpathExcludes>
-						<exclude>xml-apis:xml-apis</exclude>
-						<exclude>jtidy:jtidy</exclude>
-					</classpathExcludes>
-					<resolveTransitiveDependencies>
-						true
-					</resolveTransitiveDependencies>
-					<eclipseProjectName>
-						sctp
-					</eclipseProjectName>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${compiler.plugin.version}</version>
@@ -196,7 +155,7 @@
 		<repository>
 			<id>mobicents-public-repository-group</id>
 			<name>Mobicens Public Maven Repository Group</name>
-			<url>https://oss.sonatype.org/content/groups/public/</url>
+			<url>http://oss.sonatype.org/content/groups/public/</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
