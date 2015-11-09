@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.protocols.sctp</groupId>
 	<artifactId>sctp-parent</artifactId>
-	<version>1.6.0</version>
+	<version>1.7.0-SNAPSHOT</version>
 	<name>Mobicents :: SCTP :: Parent :: ${pom.artifactId}</name>
 	<packaging>pom</packaging>
 
@@ -146,9 +146,9 @@
 	</build>
 
 	<scm>
-		<connection>scm:git:https://code.google.com/p/sctp/</connection>
-		<developerConnection>scm:git:https://code.google.com/p/sctp/</developerConnection>
-		<url>https://code.google.com/p/sctp/</url>
+		<connection>scm:git:git@bned-gitlab.blackned.intern:opensource/sctp.git</connection>
+		<developerConnection>scm:git:git@bned-gitlab.blackned.intern:opensource/sctp.git</developerConnection>
+		<url>http://bned-gitlab.blackned.intern/opensource/sctp</url>
 	</scm>
 	<!-- repositories -->
 	<repositories>
@@ -233,4 +233,17 @@
 			</releases>
 		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus.release</id>
+			<name>Blackned Release Repository</name>
+			<url>http://bned-nexus.blackned.intern:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus.snapshots</id>
+			<name>Blackned Snapshot Repository</name>
+			<url>http://bned-nexus.blackned.intern:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
