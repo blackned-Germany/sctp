@@ -132,7 +132,7 @@ public class SctpMultiHomeTransferTest {
 	 * Simple test that creates Client and Server Association, exchanges data
 	 * and brings down association. Finally removes the Associations and Server
 	 */
-	@Test(groups = { "functional", "sctp-multihome" })
+	@Test(groups = { "functional", "sctp-multihome" }, enabled = false)
 	public void testDataTransferSctp() throws Exception {
 
 		// Testing only is sctp is enabled
