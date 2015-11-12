@@ -21,17 +21,16 @@
  */
 
 package org.mobicents.protocols.sctp;
-
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -154,10 +153,10 @@ public class AddressInUseTest {
 
 		Thread.sleep(1000 * 9);
 
-		assertFalse(clientAssocUp);
-		assertFalse(serverAssocUp);
-		assertFalse(this.clientAssociation.isConnected());
-		assertFalse(this.serverAssociation.isConnected());
+		Assert.assertFalse(clientAssocUp);
+		Assert.assertFalse(serverAssocUp);
+		Assert.assertFalse(this.clientAssociation.isConnected());
+		Assert.assertFalse(this.serverAssociation.isConnected());
 
 		if (ipChannelType == IpChannelType.TCP) {
 			dirtyServerTcp.close();
@@ -172,27 +171,27 @@ public class AddressInUseTest {
 		}
 		Thread.sleep(200);
 
-		assertTrue(clientAssocUp);
-		assertTrue(serverAssocUp);
-		assertTrue(this.clientAssociation.isConnected());
-		assertTrue(this.serverAssociation.isConnected());
+		Assert.assertTrue(clientAssocUp);
+		Assert.assertTrue(serverAssocUp);
+		Assert.assertTrue(this.clientAssociation.isConnected());
+		Assert.assertTrue(this.serverAssociation.isConnected());
 
 		this.management.stopAssociation(CLIENT_ASSOCIATION_NAME);
 
 		Thread.sleep(1000);
 
-		assertTrue(clientAssocDown);
-		assertTrue(serverAssocDown);
-		assertFalse(this.clientAssociation.isConnected());
-		assertFalse(this.serverAssociation.isConnected());
+		Assert.assertTrue(clientAssocDown);
+		Assert.assertTrue(serverAssocDown);
+		Assert.assertFalse(this.clientAssociation.isConnected());
+		Assert.assertFalse(this.serverAssociation.isConnected());
 		
 		this.management.stopAssociation(SERVER_ASSOCIATION_NAME);
 		this.management.stopServer(SERVER_NAME);
 
 		Thread.sleep(1000 * 2);
 		
-//		assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
-//		assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
+//		Assert.assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
+//		Assert.assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
 
 		Runtime runtime = Runtime.getRuntime();
 
@@ -223,7 +222,7 @@ public class AddressInUseTest {
 	
 	private class ClientAssociationListener implements AssociationListener {
 		
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)
@@ -312,7 +311,7 @@ public class AddressInUseTest {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)

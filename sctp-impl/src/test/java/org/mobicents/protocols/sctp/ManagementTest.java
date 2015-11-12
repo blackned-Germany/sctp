@@ -21,12 +21,6 @@
  */
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
-
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +29,7 @@ import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
 import org.mobicents.protocols.api.Server;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -105,7 +100,7 @@ public class ManagementTest {
 
 		management.startServer(SERVER_NAME);
 
-		assertTrue(server.isStarted());
+		Assert.assertTrue(server.isStarted());
 
 		management.stop();
 
@@ -114,24 +109,24 @@ public class ManagementTest {
 		management.start();
 
 		List<Server> servers = management.getServers();
-		assertEquals(1, servers.size());
+		Assert.assertEquals(1, servers.size());
 
 		server = servers.get(0);
-		assertTrue(server.isStarted());
+		Assert.assertTrue(server.isStarted());
 
 		// Add association
 		management.addServerAssociation(CLIENT_HOST, CLIENT_PORT, SERVER_NAME, SERVER_ASSOCIATION_NAME, ipChannelType);
 
-		assertEquals(management.getAssociations().size(), 1);
+		Assert.assertEquals(management.getAssociations().size(), 1);
 		
 		management.stopServer(SERVER_NAME);
 		
 		// Try to delete and it should throw error
 		try {
 			management.removeServer(SERVER_NAME);
-			fail("Expected Exception");
+			Assert.fail("Expected Exception");
 		} catch (Exception e) {
-			assertEquals("Server=testserver has Associations. Remove all those Associations before removing Server", e.getMessage());
+			Assert.assertEquals("Server=testserver has Associations. Remove all those Associations before removing Server", e.getMessage());
 		}
 		
 		//Try removing Association now
@@ -141,7 +136,7 @@ public class ManagementTest {
 		management.removeServer(SERVER_NAME);
 
 		servers = management.getServers();
-		assertEquals(0, servers.size());
+		Assert.assertEquals(0, servers.size());
 
 		management.stop();
 
@@ -169,30 +164,30 @@ public class ManagementTest {
 		// Add association
 		String[] arr = new String[]{"127.0.0.2", "127.0.0.3"};
 		Association clientAss1 = management.addAssociation("localhost", 2905, "localhost", 2906, "ClientAssoc1", ipChannelType, arr);
-		assertNotNull(clientAss1);
+		Assert.assertNotNull(clientAss1);
 
 		// Try to add assoc with same name
 		try {
 			clientAss1 = management.addAssociation("localhost", 2907, "localhost", 2908, "ClientAssoc1", ipChannelType, null);
-			fail("Expected Exception");
+			Assert.fail("Expected Exception");
 		} catch (Exception e) {
-			assertEquals("Already has association=ClientAssoc1", e.getMessage());
+			Assert.assertEquals("Already has association=ClientAssoc1", e.getMessage());
 		}
 
 		// Try to add assoc with same peer add and port
 		try {
 			clientAss1 = management.addAssociation("localhost", 2907, "localhost", 2906, "ClientAssoc2", ipChannelType, null);
-			fail("Expected Exception");
+			Assert.fail("Expected Exception");
 		} catch (Exception e) {
-			assertEquals("Already has association=ClientAssoc1 with same peer address=localhost and port=2906", e.getMessage());
+			Assert.assertEquals("Already has association=ClientAssoc1 with same peer address=localhost and port=2906", e.getMessage());
 		}
 
 		// Try to add assoc with same host add and port
 		try {
 			clientAss1 = management.addAssociation("localhost", 2905, "localhost", 2908, "ClientAssoc2", ipChannelType, null);
-			fail("Expected Exception");
+			Assert.fail("Expected Exception");
 		} catch (Exception e) {
-			assertEquals("Already has association=ClientAssoc1 with same host address=localhost and port=2905", e.getMessage());
+			Assert.assertEquals("Already has association=ClientAssoc1 with same host address=localhost and port=2905", e.getMessage());
 		}
 		
 		//Test Serialization.
@@ -204,7 +199,7 @@ public class ManagementTest {
 		
 		Map<String, Association> associations  = management.getAssociations();
 		
-		assertEquals(associations.size(), 1);
+		Assert.assertEquals(associations.size(), 1);
 
 		// Remove Assoc
 		management.removeAssociation("ClientAssoc1");
@@ -253,13 +248,13 @@ public class ManagementTest {
 		}
 		Thread.sleep(1000 * 1);
 
-		assertTrue(serverAssociation.isConnected());
-		assertTrue(clientAssociation.isConnected());
+		Assert.assertTrue(serverAssociation.isConnected());
+		Assert.assertTrue(clientAssociation.isConnected());
 
 		management.stop();
 
-		assertFalse(serverAssociation.isConnected());
-		assertFalse(clientAssociation.isConnected());
+		Assert.assertFalse(serverAssociation.isConnected());
+		Assert.assertFalse(clientAssociation.isConnected());
 
 	}
 

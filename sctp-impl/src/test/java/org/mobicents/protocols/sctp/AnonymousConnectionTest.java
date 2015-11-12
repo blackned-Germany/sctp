@@ -22,16 +22,21 @@
 
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.*;
+import static javolution.testing.TestContext.assertEquals;
+import static javolution.testing.TestContext.assertNull;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import java.util.Arrays;
 import javolution.util.FastList;
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
 import org.mobicents.protocols.api.Server;
 import org.mobicents.protocols.api.ServerListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -142,15 +147,6 @@ public class AnonymousConnectionTest implements ServerListener {
 	 * Simple test that creates Client and Server Association, exchanges data
 	 * and brings down association. Finally removes the Associations and Server
 	 */
-	@Test(groups = { "functional", "tcp" })
-	public void testAnonymousTcp() throws Exception {
-
-		// BasicConfigurator.configure();
-		// Logger logger = Logger.getLogger(ServerImpl.class.getName());
-		// logger.setLevel(Level.ALL);
-
-		this.testAnonymousByProtocol(IpChannelType.TCP);
-	}
 
 	private void testAnonymousByProtocol(IpChannelType ipChannelType) throws Exception {
 
@@ -367,7 +363,7 @@ public class AnonymousConnectionTest implements ServerListener {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 		AssociationData assData;
 
 		ServerAssociationListener(AssociationData assData) {
@@ -427,7 +423,7 @@ public class AnonymousConnectionTest implements ServerListener {
 			this.assData = assData;
 		}
 
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
 		@Override
 		public void onCommunicationUp(Association association, int maxInboundStreams, int maxOutboundStreams) {

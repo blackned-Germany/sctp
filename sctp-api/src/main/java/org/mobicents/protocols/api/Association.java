@@ -42,119 +42,50 @@ package org.mobicents.protocols.api;
  */
 public interface Association {
 
-	/**
-	 * Return the Association channel type TCP or SCTP
-	 * 
-	 * @return
-	 */
+
 	public IpChannelType getIpChannelType();
 
-	/**
-	 * Return the type of Association CLIENT or SERVER
-	 * 
-	 * @return
-	 */
+
 	public AssociationType getAssociationType();
 
-	/**
-	 * Each association has unique name
-	 * 
-	 * @return name of association
-	 */
 	public String getName();
 
-	/**
-	 * If this association is started by management
-	 * 
-	 * @return
-	 */
+
 	public boolean isStarted();
 
-	/**
-	 * If this association up (connection is started and established)
-	 * 
-	 * @return
-	 */
+
 	public boolean isConnected();
 
-	/**
-	 * If this association up (connection is established)
-	 * 
-	 * @return
-	 */
+
 	public boolean isUp();
 
-	/**
-	 * The AssociationListener set for this Association
-	 * 
-	 * @return
-	 */
+
 	public AssociationListener getAssociationListener();
 
-	/**
-	 * The {@link AssociationListener} to be registered for this Association
-	 * 
-	 * @param associationListener
-	 */
+
 	public void setAssociationListener(AssociationListener associationListener);
 
-	/**
-	 * The host address that underlying socket is bound to
-	 * 
-	 * @return
-	 */
+
 	public String getHostAddress();
 
-	/**
-	 * The host port that underlying socket is bound to
-	 * 
-	 * @return
-	 */
+
 	public int getHostPort();
 
-	/**
-	 * The peer address that the underlying socket connects to
-	 * 
-	 * @return
-	 */
+
 	public String getPeerAddress();
 
-	/**
-	 * The peer port that the underlying socket is connected to
-	 * 
-	 * @return
-	 */
+
 	public int getPeerPort();
 
-	/**
-	 * Server name if the association is for {@link Server}
-	 * 
-	 * @return
-	 */
+
 	public String getServerName();
 	
-	/**
-	 * When SCTP multi-homing configuration extra IP addresses are here
-	 * 
-	 * @return
-	 */
+
 	public String[] getExtraHostAddresses();
 
-	/**
-	 * Send the {@link PayloadData} to the peer
-	 * 
-	 * @param payloadData
-	 * @throws Exception
-	 */
 	public void send(PayloadData payloadData) throws Exception;
 
-	/**
-	 * Use this method only for accepting anonymous connections
-	 * from the ServerListener.onNewRemoteConnection() invoking
-	 * 
-	 * @param associationListener
-	 * @throws Exception
-	 */
+
 	public void acceptAnonymousAssociation(AssociationListener associationListener) throws Exception;
 
 	/**
@@ -163,13 +94,6 @@ public interface Association {
 	 */
 	public void rejectAnonymousAssociation();
 
-	/**
-	 * Stop the anonymous association. The connection will be closed and we will not reuse this association
-	 * This can be applied only for anonymous association, other associations must be stopped by 
-	 * Management.stopAssociation(String assocName) 
-	 * 
-	 * @throws Exception
-	 */
 	public void stopAnonymousAssociation() throws Exception;
 
 }

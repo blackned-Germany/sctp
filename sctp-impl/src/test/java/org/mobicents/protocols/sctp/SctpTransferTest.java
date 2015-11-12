@@ -22,15 +22,15 @@
 
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import com.sun.nio.sctp.SctpChannel;
@@ -171,20 +171,20 @@ public class SctpTransferTest {
 
 		Thread.sleep(1000 * 2);
 
-		assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
-		assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
+		Assert.assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
+		Assert.assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
 
-		assertTrue(clientAssocUp);
-		assertTrue(serverAssocUp);
+		Assert.assertTrue(clientAssocUp);
+		Assert.assertTrue(serverAssocUp);
 
-		assertTrue(clientAssocDown);
-		assertTrue(serverAssocDown);
-		
-		assertTrue(this.clientMaxInboundStreams> 0 );
-		assertTrue(this.clientMaxOutboundStreams > 0);
-		
-		assertTrue(this.serverMaxInboundStreams> 0 );
-		assertTrue(this.serverMaxOutboundStreams > 0);
+		Assert.assertTrue(clientAssocDown);
+		Assert.assertTrue(serverAssocDown);
+
+		Assert.assertTrue(this.clientMaxInboundStreams> 0 );
+		Assert.assertTrue(this.clientMaxOutboundStreams > 0);
+
+		Assert.assertTrue(this.serverMaxInboundStreams> 0 );
+		Assert.assertTrue(this.serverMaxOutboundStreams > 0);
 
 		this.tearDown();
 	}
@@ -204,7 +204,7 @@ public class SctpTransferTest {
 
 	private class ClientAssociationListener implements AssociationListener {
 		
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)
@@ -295,7 +295,7 @@ public class SctpTransferTest {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)

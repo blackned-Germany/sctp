@@ -21,17 +21,18 @@
  */
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static javolution.testing.TestContext.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -44,7 +45,7 @@ import com.sun.nio.sctp.SctpChannel;
  */
 public class MaxSequenceNumberTest {
 
-	public static final Logger logger = Logger.getLogger(MaxSequenceNumberTest.class);
+	public static final Logger logger = LoggerFactory.getLogger(MaxSequenceNumberTest.class);
 
 	private static final String SERVER_NAME = "testserver";
 	private static final String SERVER_HOST = "127.0.0.1";
@@ -255,7 +256,7 @@ public class MaxSequenceNumberTest {
 
 	private class ClientAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 		private int additionOnMaxSeqno;
 		private int maxInboundStreams;
 		private int maxOutboundStreams;
@@ -367,7 +368,7 @@ public class MaxSequenceNumberTest {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 		private int maxInboundStreams;
 		private int maxOutboundStreams;
 

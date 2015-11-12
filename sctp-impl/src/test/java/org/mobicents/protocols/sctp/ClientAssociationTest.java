@@ -21,18 +21,14 @@
  */
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 /**
@@ -149,15 +145,15 @@ public class ClientAssociationTest {
 
 		Thread.sleep(1000 * 20);
 
-		assertFalse(clientAssocUp);
-		assertFalse(serverAssocUp);
+		Assert.assertFalse(clientAssocUp);
+		Assert.assertFalse(serverAssocUp);
 
 		// Lets start the server now
 		this.management.startServer(SERVER_NAME);
 		Thread.sleep(1000 * 40);
 
-		assertTrue(clientAssocUp);
-		assertTrue(serverAssocUp);
+		Assert.assertTrue(clientAssocUp);
+		Assert.assertTrue(serverAssocUp);
 
 		this.management.stopAssociation(CLIENT_ASSOCIATION_NAME);
 
@@ -168,11 +164,11 @@ public class ClientAssociationTest {
 
 		Thread.sleep(1000 * 2);
 
-		assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
-		assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
+		Assert.assertTrue(Arrays.equals(SERVER_MESSAGE, clientMessage));
+		Assert.assertTrue(Arrays.equals(CLIENT_MESSAGE, serverMessage));
 
-		assertTrue(clientAssocDown);
-		assertTrue(serverAssocDown);
+		Assert.assertTrue(clientAssocDown);
+		Assert.assertTrue(serverAssocDown);
 
 		Runtime runtime = Runtime.getRuntime();
 		

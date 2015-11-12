@@ -62,37 +62,23 @@ public class PayloadData {
 		this.streamNumber = streamNumber;
 	}
 
-	/**
-	 * @return the dataLength
-	 */
 	public int getDataLength() {
 		return dataLength;
 	}
 
-	/**
-	 * @return the data
-	 */
 	public byte[] getData() {
 		return data;
 	}
 
-	/**
-	 * @return the complete
-	 */
 	public boolean isComplete() {
 		return complete;
 	}
 
-	/**
-	 * @return the unordered
-	 */
 	public boolean isUnordered() {
 		return unordered;
 	}
 
-	/**
-	 * @return the payloadProtocolId
-	 */
+
 	public int getPayloadProtocolId() {
 		return payloadProtocolId;
 	}

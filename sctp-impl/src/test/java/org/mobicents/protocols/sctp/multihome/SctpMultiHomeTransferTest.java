@@ -22,10 +22,10 @@
 
 package org.mobicents.protocols.sctp.multihome;
 
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
+
 import javolution.util.FastList;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
@@ -34,6 +34,8 @@ import org.mobicents.protocols.sctp.AssociationImpl;
 import org.mobicents.protocols.sctp.ManagementImpl;
 import org.mobicents.protocols.sctp.SctpTransferTest;
 import org.mobicents.protocols.sctp.ServerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -179,8 +181,10 @@ public class SctpMultiHomeTransferTest {
 		this.tearDown();
 	}
 
+
+
 	private class ClientAssociationListener implements AssociationListener {
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 		
 		private LoadGenerator loadGenerator = null;
 
@@ -311,7 +315,7 @@ public class SctpMultiHomeTransferTest {
 	}
 
 	private class ServerAssociationListener implements AssociationListener {
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 		private LoadGenerator loadGenerator = null;
 
 		/*
