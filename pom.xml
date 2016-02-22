@@ -11,7 +11,7 @@
 	<artifactId>sctp-parent</artifactId>
 	<name>Mobicents :: SCTP :: Parent :: ${pom.artifactId}</name>
 	<packaging>pom</packaging>
-	<version>1.6.1</version>
+	<version>1.6.2-SNAPSHOT</version>
 
 
 	<properties>
